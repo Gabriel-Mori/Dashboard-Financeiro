@@ -1,34 +1,42 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useAuth } from "@/contexts/auth-context"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { AlertCircle } from "lucide-react"
-import { Container, LoginCard, Title, Form, FormGroup, Label, ErrorMessage } from "./style"
+import {useState} from "react";
+import {useAuth} from "@/contexts/auth-context";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {AlertCircle, Loader} from "lucide-react";
+import {
+  Container,
+  LoginCard,
+  Title,
+  Form,
+  FormGroup,
+  Label,
+  ErrorMessage,
+} from "./style";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const { login } = useAuth()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const {login} = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setIsLoading(true)
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
     try {
-      await login(email, password)
+      await login(email, password);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao fazer login")
+      setError(err instanceof Error ? err.message : "Erro ao fazer login");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <Container>
@@ -63,11 +71,14 @@ export default function LoginPage() {
               {error}
             </ErrorMessage>
           )}
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? "Entrando..." : "Entrar"}
-          </Button>
+          <Button type="submit">{isLoading ? "Entrando..." : "Entrar"}</Button>
         </Form>
       </LoginCard>
+      {isLoading && (
+        <Container>
+          <Loader size={50} color="#007bff" />
+        </Container>
+      )}
     </Container>
-  )
+  );
 }

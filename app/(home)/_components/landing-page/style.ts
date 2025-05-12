@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Container = styled.div`
   min-height: 100vh;
   padding: 2rem;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-`
+`;
 
 export const Card = styled.div`
   background-color: white;
@@ -18,17 +18,17 @@ export const Card = styled.div`
   width: 100%;
   max-width: 500px;
   text-align: center;
-`
+`;
 
 export const Title = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
   color: #333;
-`
+`;
 
 export const Description = styled.p`
   font-size: 1.1rem;
   margin-bottom: 2rem;
   color: #666;
   line-height: 1.6;
-`
+`;
