@@ -26,26 +26,22 @@ Um dashboard financeiro completo desenvolvido com Next.js e TypeScript, que perm
 ## Instalação
 
 1. Clone o repositório:
-\`\`\`bash
-git clone https://github.com/seu-usuario/dashboard-financeiro.git
-cd dashboard-financeiro
-\`\`\`
 
 2. Instale as dependências:
-\`\`\`bash
-npm install
-# ou
-yarn install
-# ou
-pnpm install
-\`\`\`
+   \`\`\`bash
+   npm install
+   \`\`\`
 
 3. Inicie o servidor de desenvolvimento:
-\`\`\`bash
-npm run dev
+   \`\`\`bash
+   npm run dev
+
 # ou
+
 yarn dev
+
 # ou
+
 pnpm dev
 \`\`\`
 
