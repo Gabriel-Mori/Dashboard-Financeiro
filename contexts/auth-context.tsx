@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import {useRouter} from "next/navigation";
+import {setUserCookie, removeUserCookie} from "@/lib/auth-cookies";
 
 type User = {
   email: string;
@@ -28,11 +29,21 @@ export function AuthProvider({children}: {children: ReactNode}) {
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    async function loadUserFromCookie() {
+      try {
+        const response = await fetch("/api/auth");
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        }
+      } catch (error) {
+        console.error("Erro ao carregar usuário:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
-    setIsLoading(false);
+
+    loadUserFromCookie();
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -41,15 +52,17 @@ export function AuthProvider({children}: {children: ReactNode}) {
     }
 
     const user = {email};
+
+    await setUserCookie(user);
+
     setUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
     router.push("/dashboard");
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await removeUserCookie();
+
     setUser(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("filters");
     router.push("/");
   };
 
