@@ -6,7 +6,7 @@ Um dashboard financeiro completo desenvolvido com Next.js e TypeScript, que perm
 
 - Página de login com persistência de sessão
 - Dashboard protegido por autenticação
-- Filtros globais e dinâmicos (data, conta, indústria, estado)
+- Filtros globais e dinâmicos (data, indústria, estado)
 - Cards resumindo receitas, despesas, transações pendentes e saldo total
 - Gráficos de barras empilhadas e gráficos de linhas para visualização de transações
 - Tabela de histórico de transações
